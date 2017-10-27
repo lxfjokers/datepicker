@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;" />
+	    <meta name="renderer" content="webkit">
+	    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+		<title></title>
+		<link rel="stylesheet" href="css/lxf.timepicker.css" />
+		<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
+		<script type="text/javascript" src="js/lxf.timepicker.js" ></script>
+	</head>
+	<script>
+        (function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) { return; }
+              docEl.style.fontSize = 20 * (clientWidth / 375) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <style>
+    	.time1,.time2 {
+    		padding: 1rem;
+    		margin: 1rem;
+    	}
+    </style>
+	<body>
+		<button type="button" class="time1">第一个</button>
+		<button type="button" class="time2">第二个</button>
+		<input type="date" class="thetime" />
+		<!--<div class="lxf-time-shadow"></div>
+		<div class="lxf-time-box">
+			<div class="lxf-time-container">
+				<div class="lxf-time-title">
+					<a class="lxf-time-year">2002</a>
+					<a class="lxf-time-date active">10月24日 周四</a>
+				</div>
+				<div class="lxf-time-content">
+					<div class="lxf-time-list-date">
+						<div class="lxf-time-list-date-select">
+							<a class="lxf-time-list-date-select-prev">‹</a><span>2002年10月</span><a class="lxf-time-list-date-select-next">›</a>
+						</div>
+						<div class="lxf-time-list-date-title">
+							<ul>
+								<li>日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li>
+							</ul>
+						</div>
+						<div class="lxf-time-list-date-content">
+							<ul>
+								<li></li><li></li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li>
+								<li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li>
+								<li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li>
+								<li>20</li><li class="active">21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li>
+								<li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li></li><li></li>
+							</ul>
+						</div>
+					</div>
+					<div class="lxf-time-list-year">
+						<ul>
+							<li>1940</li>
+							<li>1941</li>
+							<li>1942</li>
+							<li>1943</li>
+							<li>1944</li>
+							<li>1945</li>
+							<li>1946</li>
+							<li>1947</li>
+							<li>1948</li>
+							<li>1949</li>
+							<li>1950</li>
+							<li>1951</li>
+							<li>1952</li>
+							<li>1953</li>
+							<li>1954</li>
+							<li>1955</li>
+							<li>1956</li>
+							<li>1957</li>
+							<li>1958</li>
+							<li class="active">2017</li>
+							<li>1960</li>
+							<li>1961</li>
+							<li>1962</li>
+							<li>1963</li>
+							<li>1964</li>
+							<li>1965</li>
+							<li>1966</li>
+							<li>1967</li>
+							<li>1968</li>
+							<li>1969</li>
+						</ul>
+					</div>
+				</div>
+				<div class="lxf-time-footer line">
+					<a>取消</a>
+					<a>确定</a>
+				</div>
+			</div>
+		</div>-->
+		<script>
+			var time1 = new lxfTimePicker(".time1",".thetime",{beginYear:1900,endYear:2020,nowYear:2017,nowMonth:10,nowDay:27});
+			var time2 = new lxfTimePicker(".time2",".thetime",{beginYear:1940,endYear:2010});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,177 @@
+* {
+	padding: 0px;
+	margin: 0px auto;
+}
+.lxf-time-shadow {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,.6);
+	display: none;
+}
+.lxf-time-box {
+	width: 100%;
+	margin: 0px auto;
+	position: fixed;
+	top: 1rem;
+	font-family: "microsoft yahei";
+	display: none;
+	-webkit-appearance:none;
+	-webkit-touch-callout:none;  /*系统默认菜单被禁用*/     
+    -webkit-user-select:none; /*webkit浏览器*/     
+    -khtml-user-select:none; /*早期浏览器*/     
+    -moz-user-select:none;/*火狐*/     
+    -ms-user-select:none; /*IE10*/     
+    user-select:none;
+}
+.lxf-time-container {
+	width: 80%;
+	margin: 0px auto;
+}
+.lxf-time-title {
+	height: 4.1rem;
+	padding: 1rem 2rem .2rem 1.6rem;
+	background-color: #009688;
+}
+.lxf-time-title a {
+	color: #b3e0dc;
+	display: block;
+	font-weight: 500;
+}
+.lxf-time-title a.active {
+	color: #fff;
+}
+.lxf-time-year {
+	font-size: .8rem;
+}
+.lxf-time-date {
+	font-size: 1.7rem;
+}
+.lxf-time-content {
+	height: 17.7rem;
+	background-color: #fff;
+	overflow: auto;
+}
+.lxf-time-list-date {
+	/*width: 80%;*/
+	/*display: none;*/
+	height: 17.7rem;
+}
+.lxf-time-list-date-select {
+	height: 3rem;
+	line-height: 3rem;
+}
+.lxf-time-list-date-select a,.lxf-time-list-date-select span {
+	font-size: .7rem;
+	font-weight: 500;
+	display: inline-block;
+	text-align: center;
+	height: 3rem;
+	line-height: 3rem;
+	vertical-align: top;
+	color: #333;
+}
+.lxf-time-list-date-select a {
+	font-size: 1.5rem;
+	width: 20%;
+	-moz-border-radius: 10rem;
+    -webkit-border-radius: 10rem;
+    border-radius: 10rem;
+}
+.lxf-time-list-date-select a:active {
+	background-color: #f6f6f6;
+}
+.lxf-time-list-date-select-prev {
+}
+.lxf-time-list-date-select-next {
+}
+.lxf-time-list-date-select span {
+	width: 60%;
+	text-align: center;
+	padding-top: .1rem;
+}
+.lxf-time-list-date-title {
+	padding: 0 .8rem;
+	height: 1.5rem;
+	line-height: 1.5rem;
+}
+.lxf-time-list-date-title li {
+	display: inline-block;
+	list-style-type: none;
+	width: calc(100% / 7);
+	text-align: center;
+	font-size: .6rem;
+	color: #757575;
+}
+.lxf-time-list-date-content {
+	padding: 0 .8rem;
+	line-height: 1.9rem;
+}
+.lxf-time-list-date-content li {
+	display: inline-block;
+	list-style-type: none;
+	width: calc(100% / 7);
+	text-align: center;
+	font-size: .6rem;
+	color: #000;
+	-moz-border-radius: 10rem;
+    -webkit-border-radius: 10rem;
+    border-radius: 10rem;
+    margin: .1rem 0;
+}
+.lxf-time-list-date-content li:active {
+	background-color: #f6f6f6;
+}
+.lxf-time-list-date-content li.active {
+	background-color: #009688;
+	color: #fff;
+}
+.lxf-time-list-year {
+	padding: .3rem 0;
+	display: none;
+	height: 17rem;
+	border-bottom: solid 1px #e0e0e0;
+	overflow: scroll;
+	-webkit-overflow-scrolling : touch;
+}
+.lxf-time-list-year li {
+	list-style-type: none;
+	text-align: center;
+	line-height: 2.4rem;
+	font-size: .8rem;
+	color: #232323;
+	font-family: "microsoft yahei";
+}
+.lxf-time-list-year li.active {
+	font-size: 1.3rem;
+	color: #009688;
+	font-weight: 500;
+}
+.lxf-time-list-year li:active {
+	background-color: #d9d9d9;
+}
+
+.lxf-time-footer {
+	height: 3rem;
+	line-height: 3rem;
+	background-color: #fff;
+	text-align: right;
+	border-top: solid 1px #fff;
+}
+.lxf-time-footer.line {
+}
+.lxf-time-footer a {
+	color: #009688;
+	font-size: .7rem;
+	margin-right: .5rem;
+	font-weight: 500;
+	display: inline-block;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	padding: 0 1rem;
+}
+.lxf-time-footer a:active {
+	background-color: #f6f6f6;
+}
