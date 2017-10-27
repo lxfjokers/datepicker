@@ -33,10 +33,10 @@
 .lxf-time-title {
 	height: 4.1rem;
 	padding: 1rem 2rem .2rem 1.6rem;
-	background-color: #009688;
+	background-color: #39abfd;
 }
 .lxf-time-title a {
-	color: #b3e0dc;
+	color: #d2ebfd;
 	display: block;
 	font-weight: 500;
 }
@@ -125,7 +125,7 @@
 	background-color: #f6f6f6;
 }
 .lxf-time-list-date-content li.active {
-	background-color: #009688;
+	background-color: #39abfd;
 	color: #fff;
 }
 .lxf-time-list-year {
@@ -146,7 +146,7 @@
 }
 .lxf-time-list-year li.active {
 	font-size: 1.3rem;
-	color: #009688;
+	color: #39abfd;
 	font-weight: 500;
 }
 .lxf-time-list-year li:active {
@@ -163,7 +163,7 @@
 .lxf-time-footer.line {
 }
 .lxf-time-footer a {
-	color: #009688;
+	color: #39abfd;
 	font-size: .7rem;
 	margin-right: .5rem;
 	font-weight: 500;
