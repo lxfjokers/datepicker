@@ -1,5 +1,6 @@
 /*
- * 年月日范围验证，年月超过范围则隐藏箭头，日超过范围则在日历中隐藏
+ * produced by: lixuefeng
+ * email: 307518352@qq.com
  * */
 
 var lxfTimePicker = function( ele, toele, options ){
@@ -8,10 +9,10 @@ var lxfTimePicker = function( ele, toele, options ){
 		format: 'yyyy-mm-dd',
 		beginYear: '1990',//开始年份
 		beginMonth: '01',//开始月份
-		beginDay: '01',//开始日期
+		beginDay: '06',//开始日期
 		endYear: '2100',//结束年份
 		endMonth: '01',//结束月份
-		endDay: '01',//结束日期
+		endDay: '08',//结束日期
 		nowYear: '2000',//结束年份
 		nowMonth: '01',//结束月份
 		nowDay: '29',//结束日期
@@ -70,6 +71,12 @@ var lxfTimeFunction = (function(){
 						'</div>'+
 						'<input type="hidden" class="lxf-input-date" value="'+self.options.nowYear+'-'+self.options.nowMonth+'-'+self.options.nowDay+'"/>'+
 						'<input type="hidden" class="lxf-input-hidden-date" value="'+self.options.nowYear+'-'+self.options.nowMonth+'-'+self.options.nowDay+'"/>'+
+						'<input type="hidden" class="lxf-input-date-beginYear" value="'+self.options.beginYear+'"/>'+
+						'<input type="hidden" class="lxf-input-date-beginMonth" value="'+self.options.beginMonth+'"/>'+
+						'<input type="hidden" class="lxf-input-date-beginDay" value="'+self.options.beginDay+'"/>'+
+						'<input type="hidden" class="lxf-input-date-endYear" value="'+self.options.endYear+'"/>'+
+						'<input type="hidden" class="lxf-input-date-endMonth" value="'+self.options.endMonth+'"/>'+
+						'<input type="hidden" class="lxf-input-date-endDay" value="'+self.options.endDay+'"/>'+
 					'</div>';
 			$(document.body).append(str);
 		},
@@ -86,7 +93,7 @@ var lxfTimeFunction = (function(){
 		getDateTemplate: function(){//获取年份列表
 			str = '<div class="lxf-time-list-date">'+
 						'<div class="lxf-time-list-date-select">'+
-							'<a class="lxf-time-list-date-select-prev" data-type="prev">‹</a><span>'+self.options.nowYear+'年'+self.options.nowMonth+'月</span><a class="lxf-time-list-date-select-next" data-type="next">›</a>'+
+							'<a class="lxf-time-list-date-select-prev" data-type="prev">‹</a><a class="lxf-time-list-date-select-prev-bak"></a><span>'+self.options.nowYear+'年'+self.options.nowMonth+'月</span><a class="lxf-time-list-date-select-next" data-type="next">›</a>'+
 						'</div>'+
 						'<div class="lxf-time-list-date-title">'+
 							'<ul>'+
@@ -125,6 +132,13 @@ var lxfTimeFunction = (function(){
 				old_date = $(".lxf-time-box-"+self.random).find(".lxf-input-date").val();
 				old_dt = old_date.split("-");
 			}
+			isOver = 0;
+			//判断是否超过日期界限
+			if( year <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginYear").val() && month <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginMonth").val() ){
+				isOver = 1;
+			}else if( year >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endYear").val() && month >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endMonth").val() ){
+				isOver = 2;
+			}
 			//获取本月第一天是周几
 			var week = this.getWeek( year, month, 1 );
 			//初始化
@@ -134,7 +148,11 @@ var lxfTimeFunction = (function(){
 				str += '<li></li>';
 			}
 			for( i = 1; i <= num; i++ ){
-				if( i == day && self.options.showNowDate ){
+				if( isOver == 1 && i < $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginDay").val() ){
+					str += '<li class="disable">'+i+'</li>';
+				}else if( isOver == 2 && i > $(".lxf-time-box-"+self.random).find(".lxf-input-date-endDay").val() ){
+					str += '<li class="disable">'+i+'</li>';
+				}else if( i == day && self.options.showNowDate ){
 					str += '<li class="active">'+i+'</li>';
 				}else if( day == 0 && old_dt[0] == year && old_dt[1] == month && old_dt[2] == i ){
 					str += '<li class="active">'+i+'</li>';
@@ -242,6 +260,14 @@ var lxfTimeFunction = (function(){
 					}else{
 						month = month - 1;
 					}
+					if( year <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginYear").val() && month <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginMonth").val() ){
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev").hide();
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev-bak").css("display","inline-block");
+					}else{
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev").show();
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-next").show();
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev-bak").hide();
+					}
 				}else if( type == "next" ){
 					//月份+1
 					if( month == 12 ){
@@ -249,6 +275,13 @@ var lxfTimeFunction = (function(){
 						year = year + 1;
 					}else{
 						month = month + 1;
+					}
+					if( year >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endYear").val() && month >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endMonth").val() ){
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-next").hide();
+					}else{
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev").show();
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-next").show();
+						$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev-bak").hide();
 					}
 				}
 				//获取当前年月的日期数量，如果当前day大于日期数量则day等于日期数量
@@ -283,6 +316,10 @@ var lxfTimeFunction = (function(){
 		addDateListener: function(){
 			//添加修改日期事件
 			$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-content li").on("click",function(){
+				//按钮置灰无法点击触发事件
+				if( $(this).hasClass("disable") ){
+					return false;
+				}
 				hd = $(".lxf-time-box-"+self.random).find(".lxf-input-hidden-date");
 				d = $(hd).val().split("-");
 				day = $(this).html();
@@ -312,6 +349,24 @@ var lxfTimeFunction = (function(){
 				//重新构建日期列表
 				dt = $(".lxf-time-box-"+self.random).find(".lxf-input-date").val();
 				d = dt.split("-");
+				
+				if( val <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginYear").val() && d[1] <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginMonth").val() ){
+					d[1] = $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginMonth").val();
+					if( d[2] <= $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginDay").val() ){
+						d[2] = $(".lxf-time-box-"+self.random).find(".lxf-input-date-beginDay").val()
+					}
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev").hide();
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-next").show();
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev-bak").css("display","inline-block");
+				}else if( val >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endYear").val() && d[1] >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endMonth").val() ){
+					d[1] = $(".lxf-time-box-"+self.random).find(".lxf-input-date-endMonth").val();
+					if( d[2] >= $(".lxf-time-box-"+self.random).find(".lxf-input-date-endDay").val() ){
+						d[2] = $(".lxf-time-box-"+self.random).find(".lxf-input-date-endDay").val()
+					}
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev").show();
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-next").hide();
+					$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-select-prev-bak").hide();
+				}
 				
 				//获取当前年月的日期数量，如果当前day大于日期数量则day等于日期数量
 				num = self.fun.getDayNum(d[0],d[1]);
