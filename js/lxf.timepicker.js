@@ -64,6 +64,7 @@ var lxfTimeFunction = (function(){
 		template: function(){//生成模板
 			str = '<div class="lxf-time-shadow lxf-time-shadow-'+self.random+'"></div>'+
 					'<div class="lxf-time-box lxf-time-box-'+self.random+'">'+
+						'<div class="lxf-time-border"></div>'+
 						'<div class="lxf-time-container">'+
 							this.headTemplate+
 							'<div class="lxf-time-content">'+
@@ -72,6 +73,7 @@ var lxfTimeFunction = (function(){
 							'</div>'+
 							this.footTemplate+
 						'</div>'+
+						'<div class="lxf-time-border"></div>'+
 						'<input type="hidden" class="lxf-input-date" value="'+self.options.nowYear+'-'+self.options.nowMonth+'-'+self.options.nowDay+'"/>'+
 						'<input type="hidden" class="lxf-input-hidden-date" value="'+self.options.nowYear+'-'+self.options.nowMonth+'-'+self.options.nowDay+'"/>'+
 						'<input type="hidden" class="lxf-input-date-beginYear" value="'+self.options.beginYear+'"/>'+
@@ -314,6 +316,13 @@ var lxfTimeFunction = (function(){
 				//元素展示
 				$(".lxf-time-box-"+self.random).show();
 				$(".lxf-time-shadow-"+self.random).show();
+			});
+			//添加元素禁止拖动事件
+			$(".lxf-time-shadow-"+self.random).on("touchmove",function(){
+				event.preventDefault();
+			});
+			$(".lxf-time-box-"+self.random).find(".lxf-time-title,.lxf-time-list-date,.lxf-time-footer,.lxf-time-border").on("touchmove",function(){
+				event.preventDefault();
 			});
 		},
 		addDateListener: function(){

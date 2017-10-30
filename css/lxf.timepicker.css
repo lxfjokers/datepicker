@@ -26,9 +26,17 @@
     -ms-user-select:none; /*IE10*/     
     user-select:none;
 }
+.lxf-time-border {
+	width: 10%;
+	height: 26.1rem;
+	display: inline-block;
+	vertical-align: top;
+}
 .lxf-time-container {
 	width: 80%;
 	margin: 0px auto;
+	display: inline-block;
+	vertical-align: top;
 }
 .lxf-time-title {
 	height: 4.1rem;
@@ -45,12 +53,14 @@
 }
 .lxf-time-year {
 	font-size: .8rem;
+	-webkit-tap-highlight-color: transpranet;
 }
 .lxf-time-date {
 	font-size: 1.7rem;
+	-webkit-tap-highlight-color: transpranet;
 }
 .lxf-time-content {
-	height: 17.7rem;
+	height: 17.8rem;
 	background-color: #fff;
 	overflow: auto;
 }
