@@ -1,6 +1,5 @@
 /*
  * 年月日范围验证，年月超过范围则隐藏箭头，日超过范围则在日历中隐藏
- * 年份选择列表初始化，选中的年份居中显示
  * */
 
 var lxfTimePicker = function( ele, toele, options ){
@@ -157,6 +156,24 @@ var lxfTimeFunction = (function(){
 		addElement: function(){//给元素添加值
 			$(self.ele).attr("data-lxf-time",self.random);
 		},
+		scrollYear: function(){//年份选中滚动
+			var s_box = $(".lxf-time-box-"+self.random).find(".lxf-time-list-year");
+			var s_top = $(s_box).find(".active").offset().top;
+			$(s_box).scrollTop( s_top - $(s_box).height() - 290 );
+		},
+		initScrollYear: function(){
+			var s_box = $(".lxf-time-box-"+self.random).find(".lxf-time-list-year");
+			$(s_box).scrollTop(0);
+		},
+		addYearActive: function( year ){
+			var li = $(".lxf-time-box-"+self.random).find(".lxf-time-list-year li");
+			$(li).removeClass("active");
+			$(li).each(function(){
+				if( $(this).html() == year ){
+					$(this).addClass("active");
+				}
+			})
+		},
 		addListener: function(){
 			//添加年份选择的监听事件
 			$(".lxf-time-box-"+self.random).find(".lxf-time-year").on("click",function(){
@@ -164,6 +181,7 @@ var lxfTimeFunction = (function(){
 				$(".lxf-time-box-"+self.random).find(".lxf-time-list-date").fadeOut(300);
 				$(".lxf-time-box-"+self.random).find(".lxf-time-year").addClass("active");
 				$(".lxf-time-box-"+self.random).find(".lxf-time-date").removeClass("active");
+				self.fun.scrollYear();
 			});
 			//添加日期选择的监听事件
 			$(".lxf-time-box-"+self.random).find(".lxf-time-date").on("click",function(){
@@ -171,6 +189,7 @@ var lxfTimeFunction = (function(){
 				$(".lxf-time-box-"+self.random).find(".lxf-time-list-year").fadeOut(300);
 				$(".lxf-time-box-"+self.random).find(".lxf-time-date").addClass("active");
 				$(".lxf-time-box-"+self.random).find(".lxf-time-year").removeClass("active");
+				self.fun.initScrollYear();
 			});
 			//添加取消按钮呼唤的监听事件
 			$(".lxf-time-box-"+self.random).find(".lxf-time-cancal").on("click",function(){
@@ -278,6 +297,8 @@ var lxfTimeFunction = (function(){
 				$(".lxf-time-box-"+self.random).find(".lxf-input-date").val(d[0]+"-"+d[1]+"-"+day);
 				//修改渲染样式
 				$(".lxf-time-box-"+self.random).find(".lxf-time-list-date-content li").removeClass("active");
+				$(".lxf-time-box-"+self.random).find(".lxf-time-year").html(d[0]);
+				self.fun.addYearActive(d[0]);
 				$(this).addClass("active");
 			});
 		},
@@ -301,6 +322,7 @@ var lxfTimeFunction = (function(){
 				//写入顶部日期
 				self.fun.addTitleDate( val,d[1],d[2] );
 				self.fun.addSelectDate(val,d[1]);
+				self.fun.initScrollYear();//初始化滚动
 				//写入隐藏值
 				$(".lxf-time-box-"+self.random).find(".lxf-input-date").val( val+"-"+d[1]+"-"+d[2] );
 				$(".lxf-time-box-"+self.random).find(".lxf-input-hidden-date").val( val+"-"+d[1]+"-"+d[2] );
