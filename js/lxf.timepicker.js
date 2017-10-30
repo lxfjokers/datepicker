@@ -4,18 +4,21 @@
  * */
 
 var lxfTimePicker = function( ele, toele, options ){
+	
+	var nowDate = new Date();
+	
 	//默认参数
 	var defaults = {
 		format: 'yyyy-mm-dd',
 		beginYear: '1990',//开始年份
 		beginMonth: '01',//开始月份
-		beginDay: '06',//开始日期
+		beginDay: '01',//开始日期
 		endYear: '2100',//结束年份
-		endMonth: '01',//结束月份
-		endDay: '08',//结束日期
-		nowYear: '2000',//结束年份
-		nowMonth: '01',//结束月份
-		nowDay: '29',//结束日期
+		endMonth: '12',//结束月份
+		endDay: '31',//结束日期
+		nowYear: nowDate.getFullYear(),//结束年份
+		nowMonth: nowDate.getMonth() + 1,//结束月份
+		nowDay: nowDate.getDate(),//结束日期
 		showNowDate: true,//是否标注当前日期
 	};
 	
@@ -438,10 +441,10 @@ var lxfTimeFunction = (function(){
 			}
 			return str;
 		},
-		isLeapYear: function(year) {//判断是否是闰月
+		isLeapYear: function(year){//判断是否是闰月
 			return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 		},
-		isInArray: function(array, item) {//判断是否在数组中
+		isInArray: function(array, item){//判断是否在数组中
 			for (var index in array) {
 				var str = array[index];
 				if (str === item) return true;
